@@ -58,8 +58,7 @@ class SignUpForm(FlaskForm):
 # Home page
 @app.route("/")
 def index():
-    table = pd.read_csv('static/visible_data.csv')
-    return render_template("index.html", table=table)
+    return render_template("index.html")
 
 
 # About page
