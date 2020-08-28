@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %} Results {% endblock %}
+
+{% block content %}
+<h1><center>You are an {{ mbti }}!</center></h1>
+
+<p><center>Click <a href="{{ hyperlink }}" target="_blank">here</a> to learn more about your personality type<br></center></p>
+
+<p><center>Below, we predict how satisfied you would be with each job,<br>
+            sorted by most-satisfying to least-satisfying for you.</center></p>
+
+
+<div class="row">
+    <div class="col-md-8 mx-auto text-white bg-primary mb-3">
+        <h5><center>How to interpret results, with examples</center></h5>
+        <p><strong>Probability_you_will_be_Satisfied  = 0.62</strong> : 62% chance you will be satisfied with this job<br><br>
+        <strong>Average_Satisfaction_for_this_Job = 0.77</strong> : 77% of people with this job were satisfied with it<br><br>
+        <strong>Your_Satisfaction_compared_to_the_Average  = 1.35 </strong> : You are 35% more likely to be satisfied with this job
+                                                                            compared to the average person in this job<br><br>
+        <strong>Your_Satisfaction_compared_to_the_Average  <= 1 </strong> : You are less likely to be satisfied with this job
+                                                                            compared to the average person in this job.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10 mx-auto mb-3">
+        <div class="overflow-auto" style="max-width: 1200px; max-height: 500px;">
+            <center>{{ jobs.to_html(classes="table table-striped") | safe }}</center>
+        </div>
+    </div>
+</div>
+
+<center>
+<form action="/quiz" method="GET">
+    <input type="submit" value="Retake Quiz" />
+</form>
+</center>
+
+
+
+{% endblock %}

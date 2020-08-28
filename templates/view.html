@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} View All{% endblock %}
+
+{% block content %}
+
+    {% for user in database %}
+        <p>Id: {{user.id}},
+            Name: {{user.name}},
+            Email: {{user.email}},
+            <!--Password: {{user.password}}, -->
+            MBTI: {{user.mbti}},
+            E: {{user.scale_e}},
+            N: {{user.scale_n}},
+            T: {{user.scale_t}},
+            J: {{user.scale_j}}</p>
+    {% endfor %}
+
+{% endblock %}

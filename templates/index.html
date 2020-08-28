@@ -1,0 +1,605 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center><img src="static/perfectfit.png" width="200" height="200"></center>
+<h5><center><i>matching people to their perfect job</i></center></h5>
+<br>
+<div class="card">
+    <div class="card-body">
+        <p>Here at PerfectFit, our mission is to help people find the job that is their
+            "perfect fit." When it comes to finding the right job, we believe that it's not always about what
+            you know, but <strong>who you are</strong>. We focus on matching careers to your individual
+            personality.<br><br>
+
+            To be able to predict the perfect job for each person, we studied the relationship between job satisfaction and
+            personality traits measured using the famous Myers-Briggs Type Indicator (MBTI) test on over 11 thousand people.
+            To learn more about the Myers-Briggs personality types, click <a href="/types">here</a>.<br><br>
+
+            Each person from the dataset answered over 140 questions to determine their MBTI, and
+            also provided their current job title, job field, and the answer to the question "Are you satisfied
+            with your job?" We then fit a statistical model to predict job satisfaction for a given MBTI profile and job type.
+            Below are the results from the analysis.</p>
+    </div>
+</div>
+
+
+<!-- Data Vis graphs -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+        <div class="card">
+            <div class="card-body">
+                <h2><center>MBTI Representation</center></h2>
+                <hr>
+            </div>
+            <div class="card-body">
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+        <div class="col-sm">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <strong><i>Hover your mouse above each bar to see the exact representation of each MBTI.</i></strong><br><br>
+
+            The bar graph shows the frequency of each personality type in the sample of 11,019 people. As you can see, ESTJ was,
+            by far, the most represented personality type, but we are accurately able to predict job satisfaction for even the most rare
+            personality types, such as INFJ and ISFP, due to the large sample size.<br><br>
+
+            As you will see later, certain personality types tend to choose certain jobs.
+            For example, ESTJs often have some sort of "manager" job. Further, the rates of satisfaction
+            with a given job are significantly impacted by personality type. This observation motivated us to further study
+            the relationship between personality and job satisfaction, and inspired us to develop a tool to communicate
+            these findings to a broader audience.
+        </div>
+  </div>
+</div>
+
+<br><br>
+<h2><center>Principal Component Analysis</center></h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+         <div class="card">
+                <div class="card-body">
+                    <h4><center>MBTI Clusters</center></h4>
+                    <hr>
+                </div>
+                <div class="card-body">
+                    <div id="scatter1"></div>
+                </div>
+            </div>
+    </div>
+        <div class="col-sm">
+            <div class="card">
+                <div class="card-body">
+                    <h4><center>Satisfaction Clusters</center></h4>
+                    <hr>
+                </div>
+                <div class="card-body">
+                    <div id="scatter2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <br>
+    <p>
+        <strong><i><center>^^ Click on the colored squares in the graphs to toggle the view of the plots. ^^</center></i></strong><br><br>
+
+        <h5><center>How to interpret the graphs above:</center></h5><br>
+        We conducted Principal Component Analysis (PCA) to condense the information from the 142 MBTI questions into two
+        variables, PC1 and PC2. This analysis allows us to see if patients "cluster" together in terms of personality type
+        and job satisfaction. Roughly speaking, we can interpret the x-axis (PC1) to correspond to the TJ vs. FP spectrum,
+        with TJ's residing mostly on the left, and FP's on the right. Similarly, we can interpret the y-axis (PC2) to
+        correspond to the IN vs. ES spectrum, with IN's residing mostly on top and ES's towards the bottom. To learn more about PCA,
+        click <a href="https://blog.umetrics.com/what-is-principal-component-analysis-pca-and-how-it-is-used">here</a>.
+        <br><br>
+
+        <strong>MBTI Clusters</strong><br>
+        The MBTI Clusters scatter plot represents all 11,019 people from the dataset. The color corresponds to each
+        person's Myers-Briggs personality type (MBTI is the abbreviation used here). You click on an MBTI in the
+        legend to isolate a specific MBTI. As you can see, there seems to be 4 'quadrants' that are formed when
+        the points are plotted:
+        <ul>
+            <li>Upper left - mostly blue area</li>
+            <li>Lower left - mostly orange area</li>
+            <li>Upper right - mixed, some reds, pinks, greys</li>
+            <li>Lower right - mixed, some greens, browns, purples</li>
+        </ul>
+        These quadrants represent distinctions between personality types. For example, in the lower right
+        quadrant, <span style="color: #9467BDFF;"><strong>ENTP</strong></span>
+        and <span style="color: #654321;"><strong>ENFP</strong></span> are often overlapping.
+        This suggests that these personality types are similar to each other.
+        Therefore, we can determine that personalities that are close to or overlapping with each other are
+        similar personalities, while types that are far away from each other are less similar to each other. <br><br>
+
+        <strong>Satisfaction Clusters</strong><br>
+        The Satisfaction Clusters scatter plot is the same plot as the MBTI Clusters, but with a different coloration.
+        This time, the plot is colored by job satisfaction. <br>
+        <ul>
+            <li><span style="color: #00FF00;"><strong>1 = Green = Satisfied</strong></span></li>
+            <li><span style="color: #073763;"><strong>0 = Dark Blue = Not Satisfied</strong></span></li>
+        </ul>
+        In this plot, we can see a large, dense cluster amongst the green (1) points and one very loose cluster amongst
+        the dark blue (0) points.
+        Both green and dark blue points are spread all over the chart, but the green points
+        are most frequent on the left side of the plot, specifically the lower left quadrant.
+        The dark blue points have a very loose cluster in the center of the plot. We later fit a logistic regression
+        model to more formally describe the relationship between personality type and job satisfaction.
+        <br><br>
+
+        <strong>Using both plots together</strong><br>
+        The <span style="color: #FF7C00;"><strong>ESTJs</strong></span> from the <strong>MBTI Clusters</strong>
+        plot are mostly all located in the lower left quadrant. Also, the
+        <span style="color: #00FF00;"><strong>green (1) points</strong></span> from the
+        <strong>Satisfaction Clusters</strong> have a dense cluster in that same lower left quadrant.
+        This suggests that ESTJs are most frequently satisfied with their career choices when compared
+        to other personality types. We encourage you to toggle the MBTI and satisfaction between both plots and
+        observe the relationships between personality type and satisfaction.
+
+
+    </p>
+</div>
+
+<br><br>
+
+<div class="container">
+    <div class="card">
+                <div class="card-body">
+                    <h4><center>Job Representation</center></h4>
+                    <strong><i><center>Hover your mouse above each bar to see the exact representation of each job.</center></i></strong>
+                    <hr>
+                    <canvas id="myChart2" width="400" height="400"></canvas>
+                    <p><br>
+                        The graph above shows each job that is included in the dataset. Out of 11,019 participants,
+                        there were 43 distinct job titles. Account/Sales Manager is the job title that the most people
+                        had, while Facility guard was the rarest job title. <br><br>
+
+                        The quiz on our website will use these 43 jobs and predict how likely you are to be satisfied
+                        in each job.
+                    </p>
+                </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+                <div class="card-body">
+                    <h4><center>Satisfaction in each Job for ESTJ</center></h4>
+                    <strong><i><center>This is an example of a specific personality type (ESTJ),
+                    the jobs that the ESTJs had, and their satisfaction</center></i></strong>
+                    <hr>
+                    <canvas id="myChart3" width="400" height="400"></canvas>
+
+                    <p><br>
+                        The graph above represents all ESTJ people from the data,
+                        the jobs for those people,
+                        and their satisfaction with those jobs. <br>
+                        Only ESTJ data is shown here.
+                    </p>
+                </div>
+    </div>
+</div>
+<br><br>
+<div class="card">
+    <div class="card-body">
+        <center><strong>You can explore the dataset below!</strong><br>
+        "psychotype" = Personality type<br>
+        "satisfied" = 1 means they ARE satisfied with their job<br>
+        "satisfied" = 0 means they are NOT satisfied with their job</center>
+    </div>
+</div>
+<br><br>
+
+<div class="row">
+    <div class="col-md-10 mx-auto mb-3">
+        <div class="overflow-auto" style="max-width: 1200px; max-height: 500px;">
+            <center>{{ table.to_html(classes="table table-striped") | safe }}</center>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    const xlabels = [];
+    const ycount = [];
+
+    chartIt();
+
+    async function chartIt() {
+    await getData();
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: xlabels,
+            datasets: [{
+                label: '# of People',
+                data: ycount,
+                backgroundColor: [
+                    '#FF7F0EFF',
+                    '#1F77B4FF',
+                    '#AEC7E8FF',
+                    '#98DF8AFF',
+                    '#C5B0D5FF',
+                    '#8C564BFF',
+                    '#2CA02CFF',
+                    '#E377C2FF',
+                    '#FFBB78FF',
+                    '#D62728FF',
+                    '#7F7F7FFF',
+                    '#C7C7C7FF',
+                    '#C49C49FF',
+                    '#F7B6D2FF',
+                    '#FF9896FF',
+                    '#9467BDFF'
+                ],
+                borderColor: [
+                    '#FF7F0EFF',
+                    '#1F77B4FF',
+                    '#AEC7E8FF',
+                    '#98DF8AFF',
+                    '#C5B0D5FF',
+                    '#8C564BFF',
+                    '#2CA02CFF',
+                    '#E377C2FF',
+                    '#FFBB78FF',
+                    '#D62728FF',
+                    '#7F7F7FFF',
+                    '#C7C7C7FF',
+                    '#C49C49FF',
+                    '#F7B6D2FF',
+                    '#FF9896FF',
+                    '#9467BDFF'
+                ],
+                borderWidth: 1
+            }]
+        },
+    });
+    }
+
+
+// Get csv data
+async function getData() {
+    const response = await fetch('static/bar_chart_mbti.csv');
+    const data = await response.text();
+    const table = data.split('\n').slice(1);
+    table.forEach(row => {
+        const columns = row.split(',');
+        const psychotype = columns[0];
+        xlabels.push(psychotype);
+        const count = columns[1];
+        ycount.push(count);
+    });
+}
+</script>
+
+<script>
+
+// Graph margins/dimensions
+var margin = {top: 10, right: 70, bottom: 30, left: 60},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// Append svg object to the scatter1 div
+var svg = d3.select("#scatter1")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Set color palette
+var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+//Read the data
+d3.csv("static/pca_1.csv", function(data) {
+
+    // Add X axis
+    var x = d3.scaleLinear()
+        .domain([-6, 8])
+        .range([ 0, width ]);
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+        .domain([-4, 6])
+        .range([ height, 0]);
+    svg.append("g")
+        .call(d3.axisLeft(y));
+
+    // Add dots
+    svg.append('g')
+        .selectAll("dot")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("class", function (d) { return "dot " + d.psychotype } )
+        .attr("cx", function (d) { return x(d.PC1); } )
+        .attr("cy", function (d) { return y(d.PC2); } )
+        .attr("r", 1.5)
+        .attr("fill-opacity","0.5")
+        .style("fill", function(d) { return color(d.psychotype) })
+
+    // Add x-axis label
+    svg.append('text')
+		.attr('x', width)
+		.attr('y', height - 10)
+		.attr('text-anchor', 'end')
+		.attr('class', 'label')
+		.text('PC1');
+
+    // Add y-axis label
+    svg.append('text')
+			.attr('x', 10)
+			.attr('y', 10)
+			.attr('class', 'label')
+			.text('PC2');
+
+	// Create legend
+	var legend = svg.selectAll('legend')
+		.data(color.domain())
+		.enter().append('g')
+		.attr('class', 'legend')
+		.attr('transform', function(d,i){ return 'translate(0,' + i * 20 + ')'; });
+
+	// Legend squares
+	legend.append('rect')
+		.attr('x', width)
+		.attr('width', 18)
+		.attr('height', 18)
+		.style('fill', color)
+
+	// Legend labels
+	legend.append('text')
+		.attr('x', width + 20)
+		.attr('y', 9)
+		.attr('dy', '.35em')
+		.style('text-anchor', 'start')
+		.text(function(d){ return d; });
+
+	// Legend title
+	svg.append("text")
+	    .attr("x", width-110)
+	    .style("font-size", "9px")
+	    .text("Click MBTI to toggle view");
+
+	// Legend functionality
+	legend.on("click", function(type){
+	    d3.selectAll(".dot")
+	        .style("opacity", 0.10)
+	        .filter(function(d){
+	            return d.psychotype == type;
+	        })
+	        .style("opacity", 1);
+	})
+
+})
+
+
+
+</script>
+
+<script>
+
+// Graph margins/dimensions
+var margin = {top: 10, right: 70, bottom: 30, left: 60},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// Append svg object to the scatter2 div
+var svg2 = d3.select("#scatter2")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Set color palette
+var color2 = d3.scaleOrdinal(["#5df349", "#062965"]);
+
+//Read the data
+d3.csv("static/pca_1.csv", function(data2) {
+
+    // Add X axis
+    var x = d3.scaleLinear()
+        .domain([-6, 8])
+        .range([ 0, width ]);
+    svg2.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+        .domain([-4, 6])
+        .range([ height, 0]);
+    svg2.append("g")
+        .call(d3.axisLeft(y));
+
+    // Add dots
+    svg2.append('g')
+        .selectAll("dot2")
+        .data(data2)
+        .enter()
+        .append("circle")
+        .attr("class", function (e) { return "dot2 " + e.satisfied } )
+        .attr("cx", function (e) { return x(e.PC1); } )
+        .attr("cy", function (e) { return y(e.PC2); } )
+        .attr("r", 1.5)
+        .attr("fill-opacity","0.5")
+        .style("fill", function(e) { return color2(e.satisfied) })
+
+    // Add x-axis label
+    svg2.append('text')
+		.attr('x', width)
+		.attr('y', height - 10)
+		.attr('text-anchor', 'end')
+		.attr('class', 'label')
+		.text('PC1');
+
+    // Add y-axis label
+    svg2.append('text')
+			.attr('x', 10)
+			.attr('y', 10)
+			.attr('class', 'label')
+			.text('PC2');
+
+	// Create legend
+	var legend2 = svg2.selectAll('legend')
+		.data(color2.domain())
+		.enter().append('g')
+		.attr('class', 'legend')
+		.attr('transform', function(d,i){ return 'translate(0,' + i * 20 + ')'; });
+
+	// Legend squares
+	legend2.append('rect')
+		.attr('x', width)
+		.attr('width', 18)
+		.attr('height', 18)
+		.style('fill', color2)
+
+	// Legend labels
+	legend2.append('text')
+		.attr('x', width + 20)
+		.attr('y', 9)
+		.attr('dy', '.35em')
+		.style('text-anchor', 'start')
+		.text(function(e){ return e; });
+
+    // Legend title
+	svg2.append("text")
+	    .attr("x", width-110)
+	    .style("font-size", "9px")
+	    .text("Click 1 or 0 to toggle view");
+
+
+    // Legend functionality
+	legend2.on("click", function(s){
+	    d3.selectAll(".dot2")
+	        .style("opacity", 0.10)
+	        .filter(function(e){
+	            return e.satisfied == s;
+	        })
+	        .style("opacity", 1);
+	})
+
+})
+</script>
+
+<script>
+    const xlabels2 = [];
+    const ycount2 = [];
+
+    chartIt2();
+
+    async function chartIt2() {
+    await getData2();
+    const ctx2 = document.getElementById('myChart2').getContext('2d');
+    const myChart2 = new Chart(ctx2, {
+        type: 'horizontalBar',
+        data: {
+            labels: xlabels2,
+            datasets: [{
+                label: '# of People',
+                data: ycount2,
+                backgroundColor: 'rgba(136, 140, 215, 0.7)'
+            }]
+        },
+    });
+    }
+
+
+// Get csv data
+async function getData2() {
+    const response = await fetch('static/bar_chart_jobs.csv');
+    const data = await response.text();
+    const table = data.split('\n').slice(1);
+    table.forEach(row => {
+        const columns = row.split(',');
+        const jobs = columns[0];
+        xlabels2.push(jobs);
+        const count2 = columns[1];
+        ycount2.push(count2);
+    });
+}
+</script>
+
+<script>
+
+    const job_labels = [];
+    const satisfied_count = [];
+    const not_satisfied_count = [];
+
+    chartIt3();
+
+    async function chartIt3() {
+        await getData3();
+        const ctx3 = document.getElementById('myChart3').getContext('2d');
+        const myChart3 = new Chart(ctx3, {
+            type: 'horizontalBar',
+            data: {
+                labels: job_labels,
+                datasets: [{
+                    label: 'Satisfied',
+                    data: satisfied_count,
+                    backgroundColor: '#00FF00'
+                },
+                {
+                    label: 'Not Satisfied',
+                    data: not_satisfied_count,
+                    backgroundColor: '#073763'
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        stacked: true
+                    }],
+                    yAxes: [{
+                        stacked: true
+                    }]
+                },
+                legend: {display: true}
+            }
+        });
+    }
+
+
+// Get csv data
+async function getData3() {
+    const response = await fetch('static/ESTJ_stacked_bar.csv');
+    const data = await response.text();
+    const table = data.split('\n').slice(1);
+    table.forEach(row => {
+        const columns = row.split(',');
+        const jobs = columns[0];
+        job_labels.push(jobs);
+        const sat = columns[1];
+        satisfied_count.push(sat);
+        const not_sat = columns[2];
+        not_satisfied_count.push(not_sat);
+    });
+}
+</script>
+
+
+{% endblock %}

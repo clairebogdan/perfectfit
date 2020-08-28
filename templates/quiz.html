@@ -1,0 +1,1163 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center><h1>Quiz</h1></center>
+
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p><center>{{msg}}</center></p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+<p><center>Welcome, {{ name }}</center></p>
+
+<form class="form-group" action="/quiz" method="POST">
+<div class="card">
+<center>
+    <p><strong>Question 1</strong><br>Usually you are:</p>
+    <input type="radio" id="q1op1" name="q1" value="e" checked="checked" ><label for="q1op1">communicative</label>&nbsp;
+    <input type="radio" id="q1op2" name="q1" value="i"><label for="q1op2">quite restrained and calm</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 2</strong><br>If you were a teacher, with great pleasure you would lead:</p>
+    <input type="radio" id="q2op1" name="q2" value="s" checked="checked"><label for="q2op1">practical lessons</label>&nbsp;
+    <input type="radio" id="q2op2" name="q2" value="n"><label for="q2op2">theoretical studies</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 3</strong><br>You more often allow:</p>
+    <input type="radio" id="q3op1" name="q3" value="f" checked="checked"><label for="q3op1"> your feelings to control your mind</label>&nbsp;
+    <input type="radio" id="q3op2" name="q3" value="t"><label for="q3op2">your mind to control your feelings</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 4</strong><br>When you decide to go somewhere for one day, you usually:</p>
+    <input type="radio" id="q4op1" name="q4" value="j" checked="checked"><label for="q4op1">plan what you will do and when you will do it</label>&nbsp;
+    <input type="radio" id="q4op2" name="q4" value="p"><label for="q4op2">just hit the road</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 5</strong><br>In a group setting, you usually:</p>
+    <input type="radio" id="q5op1" name="q5" value="e" checked="checked"><label for="q5op1">join the group conversation</label>&nbsp;
+    <input type="radio" id="q5op2" name="q5" value="i"><label for="q5op2">talk with each person separately</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 6</strong><br>It is usually easier for you to communicate:</p>
+    <input type="radio" id="q6op1" name="q6" value="n" checked="checked"><label for="q6op1">with people prone to fantasies</label>&nbsp;
+    <input type="radio" id="q6op2" name="q6" value="s"><label for="q6op2">with realistic people</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 7</strong><br>You would consider it a compliment if you were called a:</p>
+    <input type="radio" id="q7op1" name="q7" value="f" checked="checked"><label for="q7op1">thoughtful person</label>&nbsp;
+    <input type="radio" id="q7op2" name="q7" value="t"><label for="q7op2">reasonable person</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 8</strong><br>You prefer:</p>
+    <input type="radio" id="q8op1" name="q8" value="j" checked="checked"><label for="q8op1">to decide in advance that you will be at a certain meeting, party, etc.</label>&nbsp;
+    <input type="radio" id="q8op2" name="q8" value="p"><label for="q8op2">to decide at the last moment to be able to choose entertainment</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 9</strong><br>In a large company, more often you would:</p>
+    <input type="radio" id="q9op1" name="q9" value="e" checked="checked"><label for="q9op1">introduce people to each other</label>&nbsp;
+    <input type="radio" id="q9op2" name="q9" value="i"><label for="q9op2">be introduced to others</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 10</strong><br>You are most likely to be called a:</p>
+    <input type="radio" id="q10op1" name="q10" value="s" checked="checked"><label for="q10op1">practical person</label>&nbsp;
+    <input type="radio" id="q10op2" name="q10" value="n"><label for="q10op2">fictional, romantic person</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 11</strong><br>You usually:</p>
+    <input type="radio" id="q11op1" name="q11" value="f" checked="checked"><label for="q11op1">value feelings more than logic</label>&nbsp;
+    <input type="radio" id="q11op2" name="q11" value="t"><label for="q11op2">value logic more than feelings</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 12</strong><br>You tend to live and work:</p>
+    <input type="radio" id="q12op1" name="q12" value="p" checked="checked"><label for="q12op1">coping with surprises and trying to quickly find solutions</label>&nbsp;
+    <input type="radio" id="q12op2" name="q12" value="j"><label for="q12op2">following a carefully crafted plan</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 13</strong><br>You are more likely to:</p>
+    <input type="radio" id="q13op1" name="q13" value="i"checked="checked"><label for="q13op1">have deep friendships with few people</label>&nbsp;
+    <input type="radio" id="q13op2" name="q13" value="e"><label for="q13op2">have friendships with many</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 14</strong><br>You like people who:</p>
+    <input type="radio" id="q14op1" name="q14" value="s" checked="checked"><label for="q14op1">follow generally accepted standards and do not attract attention</label>&nbsp;
+    <input type="radio" id="q14op2" name="q14" value="n"><label for="q14op2">are so original that you don't care if they attract attention to themselves</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 15</strong><br>It is a more serious flaw to be:</p>
+    <input type="radio" id="q15op1" name="q15" value="t" checked="checked"><label for="q15op1">too lenient</label>&nbsp;
+    <input type="radio" id="q15op2" name="q15" value="f"><label for="q15op2">too strict</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 16</strong><br>When you stick to a schedule, it:</p>
+    <input type="radio" id="q16op1" name="q16" value="j" checked="checked"><label for="q16op1">disciplines you</label>&nbsp;
+    <input type="radio" id="q16op2" name="q16" value="p"><label for="q16op2">reduces your performance</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 17</strong><br>Among your friends, you feel like you:</p>
+    <input type="radio" id="q17op1" name="q17" value="i" checked="checked"><label for="q17op1">know them, but not deeply</label>&nbsp;
+    <input type="radio" id="q17op2" name="q17" value="e"><label for="q17op2">know a lot about them</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 18</strong><br>You would rather have a friend who:</p>
+    <input type="radio" id="q18op1" name="q18" value="n" checked="checked"><label for="q18op1">is always full of new ideas</label>&nbsp;
+    <input type="radio" id="q18op2" name="q18" value="s"><label for="q18op2">looks at the world realistically</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 19</strong><br>When making an important decision, you are likely to:</p>
+    <input type="radio" id="q19op1" name="q19" value="f" checked="checked"><label for="q19op1">trust your feelings</label>&nbsp;
+    <input type="radio" id="q19op2" name="q19" value="t"><label for="q19op2">trust your logic</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 20</strong><br>The thought of making a to-do list for the weekend:</p>
+    <input type="radio" id="q20op1" name="q20" value="j" checked="checked"><label for="q20op1">motivates you</label>&nbsp;
+    <input type="radio" id="q20op2" name="q20" value="p"><label for="q20op2">depresses you</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 21</strong><br>Usually you:</p>
+    <input type="radio" id="q21op1" name="q21" value="e" checked="checked"><label for="q21op1">can talk freely with almost any person at any time</label>&nbsp;
+    <input type="radio" id="q21op2" name="q21" value="i"><label for="q21op2">don't always know what to say to a person</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 22</strong><br>When you read for your pleasure, you like:</p>
+    <input type="radio" id="q22op1" name="q22" value="n" checked="checked"><label for="q22op1">unusual, original material</label>&nbsp;
+    <input type="radio" id="q22op2" name="q22" value="s"><label for="q22op2">when writers express their thoughts clearly</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 23</strong><br>You are more concerned about:</p>
+    <input type="radio" id="q23op1" name="q23" value="f" checked="checked"><label for="q23op1">feelings</label>&nbsp;
+    <input type="radio" id="q23op2" name="q23" value="t"><label for="q23op2">logical reasoning</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 24</strong><br>Your work efficiency is higher:</p>
+    <input type="radio" id="q24op1" name="q24" value="p" checked="checked"><label for="q24op1">when you work spontaneously</label>&nbsp;
+    <input type="radio" id="q24op2" name="q24" value="j"><label for="q24op2">when you work within a planned schedule</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 25</strong><br>People can determine your interests:</p>
+    <input type="radio" id="q25op1" name="q25" value="e" checked="checked"><label for="q25op1">when they first meet you</label>&nbsp;
+    <input type="radio" id="q25op2" name="q25" value="i"><label for="q25op2">only when they get to know you better</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 26</strong><br>When completing a common task, you prefer to:</p>
+    <input type="radio" id="q26op1" name="q26" value="s" checked="checked"><label for="q26op1">do it the way other people usually do it</label>&nbsp;
+    <input type="radio" id="q26op2" name="q26" value="n"><label for="q26op2">invent your own way to do it</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 27</strong><br>Which word in the “imaginative - rational” pair do you align more with?</p>
+    <input type="radio" id="q27op1" name="q27" value="f" checked="checked"><label for="q27op1">imaginative</label>&nbsp;
+    <input type="radio" id="q27op2" name="q27" value="t"><label for="q27op2">rational</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 28</strong><br>When you need to do work, you prefer to:</p>
+    <input type="radio" id="q28op1" name="q28" value="j" checked="checked"><label for="q28op1">organize everything before you start</label>&nbsp;
+    <input type="radio" id="q28op2" name="q28" value="p"><label for="q28op2">start and then find out what you need during the process</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 29</strong><br>You usually:</p>
+    <input type="radio" id="q29op1" name="q29" value="e" checked="checked"><label for="q29op1">freely express your feelings</label>&nbsp;
+    <input type="radio" id="q29op2" name="q29" value="i"><label for="q29op2">keep your feelings to yourself</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 30</strong><br>Which word in the “facts - ideas” pair do you align with more?</p>
+    <input type="radio" id="q30op1" name="q30" value="s" checked="checked"><label for="q30op1">facts</label>&nbsp;
+    <input type="radio" id="q30op2" name="q30" value="n"><label for="q30op2">ideas</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 31</strong><br>What word in the pair of “thoughts - feelings” do you align with more?</p>
+    <input type="radio" id="q31op1" name="q31" value="t" checked="checked"><label for="q31op1">thoughts</label>&nbsp;
+    <input type="radio" id="q31op2" name="q31" value="f"><label for="q31op2">feelings</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 32</strong><br>When you know that at a certain time you will do a certain thing:</p>
+    <input type="radio" id="q32op1" name="q32" value="j" checked="checked"><label for="q32op1">it’s easier for you to plan your day</label>&nbsp;
+    <input type="radio" id="q32op2" name="q32" value="p"><label for="q32op2">you have to adapt to this schedule</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 33</strong><br>What word in the pair “bubbly - serious” do you align with more?</p>
+    <input type="radio" id="q33op1" name="q33" value="e" checked="checked"><label for="q33op1">bubbly</label>&nbsp;
+    <input type="radio" id="q33op2" name="q33" value="i"><label for="q33op2">serious</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 34</strong><br>What word in the pair “theory - practice” do you align with more?</p>
+    <input type="radio" id="q34op1" name="q34" value="n" checked="checked"><label for="q34op1">theory</label>&nbsp;
+    <input type="radio" id="q34op2" name="q34" value="s"><label for="q34op2">practice</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 35</strong><br>Which word in the pair “logical - emotional” do you like more in meaning?</p>
+    <input type="radio" id="q35op1" name="q35" value="t" checked="checked"><label for="q35op1">logical</label>&nbsp;
+    <input type="radio" id="q35op2" name="q35" value="f"><label for="q35op2">emotional</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 36</strong><br>Which word in the pair “planned - unplanned” do you like more in meaning?</p>
+    <input type="radio" id="q36op1" name="q36" value="j" checked="checked"><label for="q36op1">planned</label>&nbsp;
+    <input type="radio" id="q36op2" name="q36" value="p"><label for="q36op2">unplanned</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 37</strong><br>What word in a pair of “quiet - talkative” do you align with more?</p>
+    <input type="radio" id="q37op1" name="q37" value="i" checked="checked"><label for="q37op1">quiet</label>&nbsp;
+    <input type="radio" id="q37op2" name="q37" value="e"><label for="q37op2">talkative</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 38</strong><br>Which word in the “imagine - observe” pair do you like more in meaning?</p>
+    <input type="radio" id="q38op1" name="q38" value="n" checked="checked"><label for="q38op1">imagine</label>&nbsp;
+    <input type="radio" id="q38op2" name="q38" value="s"><label for="q38op2">observe</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 39</strong><br>Which word in the pair “analyze - sympathize” do you like more in meaning?</p>
+    <input type="radio" id="q39op1" name="q39" value="t" checked="checked"><label for="q39op1">analyze</label>&nbsp;
+    <input type="radio" id="q39op2" name="q39" value="f"><label for="q39op2">sympathize</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 40</strong><br>Which word in the pair “systematic - spontaneous” do you like more in meaning?</p>
+    <input type="radio" id="q40op1" name="q40" value="j" checked="checked"><label for="q40op1">systematic</label>&nbsp;
+    <input type="radio" id="q40op2" name="q40" value="p"><label for="q40op2">spontaneous</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 41</strong><br>What word in the pair “calm - lively” do you like more in meaning?</p>
+    <input type="radio" id="q41op1" name="q41" value="i" checked="checked"><label for="q41op1">calm</label>&nbsp;
+    <input type="radio" id="q41op2" name="q41" value="w"><label for="q41op2">lively</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 42</strong><br>Which word in the “literal - figurative” pair do you like more in meaning?</p>
+    <input type="radio" id="q42op1" name="q42" value="s" checked="checked"><label for="q42op1">literal</label>&nbsp;
+    <input type="radio" id="q42op2" name="q42" value="n"><label for="q42op2">figurative</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 43</strong><br>Which word in the pair “justice - mercy” do you like more in meaning?</p>
+    <input type="radio" id="q43op1" name="q43" value="t" checked="checked"><label for="q43op1">justice</label>&nbsp;
+    <input type="radio" id="q43op2" name="q43" value="f"><label for="q43op2">mercy</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 44</strong><br>Which word in the “regular - random” pair do you like more in meaning?</p>
+    <input type="radio" id="q44op1" name="q44" value="j" checked="checked"><label for="q44op1">regular</label>&nbsp;
+    <input type="radio" id="q44op2" name="q44" value="p"><label for="q44op2">random</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 45</strong><br>What word in the pair “speak - write” do you like more in meaning?</p>
+    <input type="radio" id="q45op1" name="q45" value="e" checked="checked"><label for="q45op1">speak</label>&nbsp;
+    <input type="radio" id="q45op2" name="q45" value="i"><label for="q45op2">write</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 46</strong><br>Which word in the “dreamy - practical” pair do you like more in meaning?</p>
+    <input type="radio" id="q46op1" name="q46" value="n" checked="checked"><label for="q46op1">dreamy</label>&nbsp;
+    <input type="radio" id="q46op2" name="q46" value="s"><label for="q46op2">practical</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 47</strong><br>Which word in the pair “compassion - prudence” do you like more in meaning?</p>
+    <input type="radio" id="q47op1" name="q47" value="f" checked="checked"><label for="q47op1">compassion</label>&nbsp;
+    <input type="radio" id="q47op2" name="q47" value="t"><label for="q47op2">prudence</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 48</strong><br>Which word in the “impulse - decision” pair do you like more in meaning?</p>
+    <input type="radio" id="q48op1" name="q48" value="p" checked="checked"><label for="q48op1">impulse</label>&nbsp;
+    <input type="radio" id="q48op2" name="q48" value="j"><label for="q48op2">decision</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 49</strong><br>Which word in the pair “sociable - withdrawn” do you like more in meaning?</p>
+    <input type="radio" id="q49op1" name="q49" value="e" checked="checked"><label for="q49op1">sociable</label>&nbsp;
+    <input type="radio" id="q49op2" name="q49" value="i"><label for="q49op2">withdrawn</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 50</strong><br>Which word in the pair “produce - create” do you like more in meaning?</p>
+    <input type="radio" id="q50op1" name="q50" value="s" checked="checked"><label for="q50op1">produce</label>&nbsp;
+    <input type="radio" id="q50op2" name="q50" value="n"><label for="q50op2">create</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 51</strong><br>What word in the pair “benefit - good" do you like more in meaning?</p>
+    <input type="radio" id="q51op1" name="q51" value="t" checked="checked"><label for="q51op1">benefit</label>&nbsp;
+    <input type="radio" id="q51op2" name="q51" value="f"><label for="q51op2">good</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 52</strong><br>Which word in the “scripted - improvisation” pair do you like more in meaning?</p>
+    <input type="radio" id="q52op1" name="q52" value="j" checked="checked"><label for="q52op1">scripted</label>&nbsp;
+    <input type="radio" id="q52op2" name="q52" value="p"><label for="q52op2">improvisation</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 53</strong><br>Would you rather spend your day with large group of people or spend time alone?</p>
+    <input type="radio" id="q53op1" name="q53" value="e" checked="checked"><label for="q53op1">spend the day with large group of people</label>&nbsp;
+    <input type="radio" id="q53op2" name="q53" value="i"><label for="q53op2">spend time alone</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 54</strong><br>Which word in the pair “prudent - charming” do you like more in meaning?</p>
+    <input type="radio" id="q54op1" name="q54" value="s" checked="checked"><label for="q54op1">prudent</label>&nbsp;
+    <input type="radio" id="q54op2" name="q54" value="n"><label for="q54op2">charming</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 55</strong><br>Which word in the pair “decisive - faithful” do you like more in meaning?</p>
+    <input type="radio" id="q55op1" name="q55" value="t" checked="checked"><label for="q55op1">decisive</label>&nbsp;
+    <input type="radio" id="q55op2" name="q55" value="f"><label for="q55op2">faithful</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 56</strong><br>Which word in the “changing - constant” pair do you like more in meaning?</p>
+    <input type="radio" id="q56op1" name="q56" value="p" checked="checked"><label for="q56op1">changing</label>&nbsp;
+    <input type="radio" id="q56op2" name="q56" value="j"><label for="q56op2">constant</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 57</strong><br>You consider yourself:</p>
+    <input type="radio" id="q57op1" name="q57" value="e" checked="checked"><label for="q57op1">a very passionate person</label>&nbsp;
+    <input type="radio" id="q57op2" name="q57" value="i"><label for="q57op2">a less passionate person</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 58</strong><br>What word in the pair “execution - creativity” do you like more in meaning?</p>
+    <input type="radio" id="q58op1" name="q58" value="s" checked="checked"><label for="q58op1">execution</label>&nbsp;
+    <input type="radio" id="q58op2" name="q58" value="n"><label for="q58op2">creativity</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 59</strong><br>What word in the pair “principle - kind-hearted” do you like more in meaning?</p>
+    <input type="radio" id="q59op1" name="q59" value="t" checked="checked"><label for="q59op1">principle</label>&nbsp;
+    <input type="radio" id="q59op2" name="q59" value="f"><label for="q59op2">kind-hearted</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 60</strong><br>What word in the pair “disciplined - informal” do you like more in meaning?</p>
+    <input type="radio" id="q60op1" name="q60" value="j" checked="checked"><label for="q60op1">disciplined</label>&nbsp;
+    <input type="radio" id="q60op2" name="q60" value="p"><label for="q60op2">informal</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 61</strong><br>At parties you:</p>
+    <input type="radio" id="q61op1" name="q61" value="i" checked="checked"><label for="q61op1">often get bored</label>&nbsp;
+    <input type="radio" id="q61op2" name="q61" value="e"><label for="q61op2">usually have a good time</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 62</strong><br>Which word in the “concrete - abstract” pair do you like more in meaning?</p>
+    <input type="radio" id="q62op1" name="q62" value="s" checked="checked"><label for="q62op1">concrete</label>&nbsp;
+    <input type="radio" id="q62op2" name="q62" value="n"><label for="q62op2">abstract</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 63</strong><br>What word in the pair “peacemaker - judge” do you like more in meaning?</p>
+    <input type="radio" id="q63op1" name="q63" value="f" checked="checked"><label for="q63op1">peacemaker</label>&nbsp;
+    <input type="radio" id="q63op2" name="q63" value="t"><label for="q63op2">judge</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 64</strong><br>What word in the pair “swift - thorough” do you like more in meaning?</p>
+    <input type="radio" id="q64op1" name="q64" value="p" checked="checked"><label for="q64op1">swift</label>&nbsp;
+    <input type="radio" id="q64op2" name="q64" value="j"><label for="q64op2">thorough</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 65</strong><br>Usually you:</p>
+    <input type="radio" id="q65op1" name="q65" value="e" checked="checked"><label for="q65op1">make new friends constantly</label>&nbsp;
+    <input type="radio" id="q65op2" name="q65" value="i"><label for="q65op2">stick with old friends</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 66</strong><br>Which word in the “build - invent” pair do you like more in meaning?</p>
+    <input type="radio" id="q66op1" name="q66" value="s" checked="checked"><label for="q66op1">build</label>&nbsp;
+    <input type="radio" id="q66op2" name="q66" value="n"><label for="q66op2">invent</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 67</strong><br>Which word in the “soft - hard” pair do you like more in meaning?</p>
+    <input type="radio" id="q67op1" name="q67" value="f" checked="checked"><label for="q67op1">soft</label>&nbsp;
+    <input type="radio" id="q67op2" name="q67" value="t"><label for="q67op2">hard</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 68</strong><br>You tend to:</p>
+    <input type="radio" id="q68op1" name="q68" value="p" checked="checked"><label for="q68op1">do everything at the last moment</label>&nbsp;
+    <input type="radio" id="q68op2" name="q68" value="j"><label for="q68op2">find that procrastinating gets on your nerves</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 69</strong><br>When something new comes into fashion, you usually:</p>
+    <input type="radio" id="q69op1" name="q69" value="e" checked="checked"><label for="q69op1">are one of the first to try it</label>&nbsp;
+    <input type="radio" id="q69op2" name="q69" value="i"><label for="q69op2">aren't very interested</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 70</strong><br>Do you make decisions based on your surroundings or your own intuition?</p>
+    <input type="radio" id="q70op1" name="q70" value="s" checked="checked"><label for="q70op1">surroundings</label>&nbsp;
+    <input type="radio" id="q70op2" name="q70" value="n"><label for="q70op2">intuition</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 71</strong><br>What word in the pair “forgive - endure” do you like more in meaning?</p>
+    <input type="radio" id="q71op1" name="q71" value="f" checked="checked"><label for="q71op1">forgive</label>&nbsp;
+    <input type="radio" id="q71op2" name="q71" value="t"><label for="q71op2">endure</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 72</strong><br>Following the daily routine:</p>
+    <input type="radio" id="q72op1" name="q72" value="j" checked="checked"><label for="q72op1">helps to work efficiently</label>&nbsp;
+    <input type="radio" id="q72op2" name="q72" value="p"><label for="q72op2">limits your freedom</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 73</strong><br>If you find yourself in an awkward position, you usually:</p>
+    <input type="radio" id="q73op1" name="q73" value="e" checked="checked"><label for="q73op1">try to have fun with it</label>&nbsp;
+    <input type="radio" id="q73op2" name="q73" value="i"><label for="q73op2">find a decent way out of it only after a considerable amount of time</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 74</strong><br>What word in the pair “instinct - experience” do you like more in meaning?</p>
+    <input type="radio" id="q74op1" name="q74" value="n" checked="checked"><label for="q74op1">instinct</label>&nbsp;
+    <input type="radio" id="q74op2" name="q74" value="s"><label for="q74op2">experience</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 75</strong><br>What word in the “who - what” pair do you like more in meaning?</p>
+    <input type="radio" id="q75op1" name="q75" value="f" checked="checked"><label for="q75op1">who</label>&nbsp;
+    <input type="radio" id="q75op2" name="q75" value="t"><label for="q75op2">what</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 76</strong><br>When you think of any little thing that needs to be done or bought:</p>
+    <input type="radio" id="q76op1" name="q76" value="p" checked="checked"><label for="q76op1">you will most likely forget about it and remember much later</label>&nbsp;
+    <input type="radio" id="q76op2" name="q76" value="j"><label for="q76op2">you usually make a note of it so as not to forget</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 77</strong><br>Do you think that your loved ones know about your feelings and thoughts?</p>
+    <input type="radio" id="q77op1" name="q77" value="e" checked="checked"><label for="q77op1">in most cases, yes</label>&nbsp;
+    <input type="radio" id="q77op2" name="q77" value="i"><label for="q77op2">only when you let them know</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 78</strong><br>Which word in the “sign - symbol” pair do you like more in meaning?</p>
+    <input type="radio" id="q78op1" name="q78" value="s" checked="checked"><label for="q78op1">sign</label>&nbsp;
+    <input type="radio" id="q78op2" name="q78" value="n"><label for="q78op2">symbol</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 79</strong><br>What word in the pair “praise - criticism” do you like more in meaning?</p>
+    <input type="radio" id="q79op1" name="q79" value="f" checked="checked"><label for="q79op1">praise</label>&nbsp;
+    <input type="radio" id="q79op2" name="q79" value="t"><label for="q79op2">criticism</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 80</strong><br>It’s more difficult for you to adapt:</p>
+    <input type="radio" id="q80op1" name="q80" value="p" checked="checked"><label for="q80op1">to routine</label>&nbsp;
+    <input type="radio" id="q80op2" name="q80" value="j"><label for="q80op2">to constant change</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 81</strong><br>At parties you:</p>
+    <input type="radio" id="q81op1" name="q81" value="e" checked="checked"><label for="q81op1">like to lead events</label>&nbsp;
+    <input type="radio" id="q81op2" name="q81" value="i"><label for="q81op2">don't stop others from having fun</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 82</strong><br>Which word in the pair “accept-as-is - change” do you like more in meaning?</p>
+    <input type="radio" id="q82op1" name="q82" value="s" checked="checked"><label for="q82op1">accept-as-is</label>&nbsp;
+    <input type="radio" id="q82op2" name="q82" value="n"><label for="q82op2">change</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 83</strong><br>Which word in the “cautious - trusting” pair do you like more in meaning?</p>
+    <input type="radio" id="q83op1" name="q83" value="t" checked="checked"><label for="q83op1">cautious</label>&nbsp;
+    <input type="radio" id="q83op2" name="q83" value="f"><label for="q83op2">trusting</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 84</strong><br>When you have a lot of work that needs to be done as soon as possible, you:</p>
+    <input type="radio" id="q84op1" name="q84" value="j" checked="checked"><label for="q84op1">sacrifice time to make a plan before getting started</label>&nbsp;
+    <input type="radio" id="q84op2" name="q84" value="p"><label for="q84op2">just dive into it</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 85</strong><br>Do you prefer to work in large groups?</p>
+    <input type="radio" id="q85op1" name="q85" value="e" checked="checked"><label for="q85op1">Yes</label>&nbsp;
+    <input type="radio" id="q85op2" name="q85" value="i"><label for="q85op2">No</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 86</strong><br>Which word in the “understandable - mysterious” pair do you like more in meaning?</p>
+    <input type="radio" id="q86op1" name="q86" value="s" checked="checked"><label for="q86op1">understandable</label>&nbsp;
+    <input type="radio" id="q86op2" name="q86" value="n"><label for="q86op2">mysterious</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 87</strong><br>Which word in the “agree - debate” pair do you like more in meaning?</p>
+    <input type="radio" id="q87op1" name="q87" value="f" checked="checked"><label for="q87op1">agree</label>&nbsp;
+    <input type="radio" id="q87op2" name="q87" value="t"><label for="q87op2">debate</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 88</strong><br>When you undertake any work, you:</p>
+    <input type="radio" id="q88op1" name="q88" value="j" checked="checked"><label for="q88op1">start early to have as much time as possible</label>&nbsp;
+    <input type="radio" id="q88op2" name="q88" value="p"><label for="q88op2">delay starting because you can work fast at the end</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 89</strong><br>How do you feel when you are in an unfamiliar environment?</p>
+    <input type="radio" id="q89op1" name="q89" value="e" checked="checked"><label for="q89op1">fine</label>&nbsp;
+    <input type="radio" id="q89op2" name="q89" value="i"><label for="q89op2">anxious</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 90</strong><br>You would prefer to:</p>
+    <input type="radio" id="q90op1" name="q90" value="n" checked="checked"><label for="q90op1">be original, live by your own rules</label>&nbsp;
+    <input type="radio" id="q90op2" name="q90" value="s"><label for="q90op2">follow generally accepted standards and traditions</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 91</strong><br>Which word in the pair “gentle - tenacious” do you like more in meaning?</p>
+    <input type="radio" id="q91op1" name="q91" value="f" checked="checked"><label for="q91op1">gentle</label>&nbsp;
+    <input type="radio" id="q91op2" name="q91" value="t"><label for="q91op2">tenacious</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 92</strong><br>If you were asked what you are going to do on the weekend, you:</p>
+    <input type="radio" id="q92op1" name="q92" value="j" checked="checked"><label for="q92op1">could accurately list exactly what you will do and for how long</label>&nbsp;
+    <input type="radio" id="q92op2" name="q92" value="p"><label for="q92op2">probably would list multiple things, but may not have time to do all of them</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 93</strong><br>Can you say that you are interested in other people and their affairs?</p>
+    <input type="radio" id="q93op1" name="q93" value="e" checked="checked"><label for="q93op1">Yes</label>&nbsp;
+    <input type="radio" id="q93op2" name="q93" value="i"><label for="q93op2">No</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 94</strong><br>A high praise for a person would be recognition of their:</p>
+    <input type="radio" id="q94op1" name="q94" value="n" checked="checked"><label for="q94op1">foresight, intuition</label>&nbsp;
+    <input type="radio" id="q94op2" name="q94" value="s"><label for="q94op2">common sense</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 95</strong><br>You think it’s worse to be:</p>
+    <input type="radio" id="q95op1" name="q95" value="f" checked="checked"><label for="q95op1">insensible</label>&nbsp;
+    <input type="radio" id="q95op2" name="q95" value="t"><label for="q95op2">unreasonable</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 96</strong><br>You find that monotonous and familiar activities throughout the day:</p>
+    <input type="radio" id="q96op1" name="q96" value="j" checked="checked"><label for="q96op1">reassure you</label>&nbsp;
+    <input type="radio" id="q96op2" name="q96" value="p"><label for="q96op2">bore you</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 97</strong><br>When having to speak out or express the interests of the group, you feel:</p>
+    <input type="radio" id="q97op1" name="q97" value="e" checked="checked"><label for="q97op1">easy and nice</label>&nbsp;
+    <input type="radio" id="q97op2" name="q97" value="i"><label for="q97op2">that it is an unpleasant duty</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 98</strong><br>You think it’s more important to be able to:</p>
+    <input type="radio" id="q98op1" name="q98" value="n" checked="checked"><label for="q98op1">see hypothetical opportunities in any situation</label>&nbsp;
+    <input type="radio" id="q98op2" name="q98" value="s"><label for="q98op2">adapt to the current situation at hand</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 99</strong><br>You would prefer to work with a manager who is:</p>
+    <input type="radio" id="q99op1" name="q99" value="f" checked="checked"><label for="q99op1">always kind</label>&nbsp;
+    <input type="radio" id="q99op2" name="q99" value="t"><label for="q99op2">always fair</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 100</strong><br>It is easier to become friends with someone who:</p>
+    <input type="radio" id="q100op1" name="q100" value="j" checked="checked"><label for="q100op1">shares your standards and point of view</label>&nbsp;
+    <input type="radio" id="q100op2" name="q100" value="p"><label for="q100op2">is an interesting person</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 101</strong><br>People tend to describe you as someone who:</p>
+    <input type="radio" id="q101op1" name="q101" value="e" checked="checked"><label for="q101op1">acts quickly without hesitation</label>&nbsp;
+    <input type="radio" id="q101op2" name="q101" value="i"><label for="q101op2">ponders everything, sometimes too long</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 102</strong><br>If you had public influence, then you:</p>
+    <input type="radio" id="q102op1" name="q102" value="s" checked="checked"><label for="q102op1">maintain status quo</label>&nbsp;
+    <input type="radio" id="q102op2" name="q102" value="n"><label for="q102op2">would urge to sweep away everything that does not meet your standards</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 103</strong><br>People would say that you:</p>
+    <input type="radio" id="q103op1" name="q103" value="t" checked="checked"><label for="q103op1">often criticize and are skeptical</label>&nbsp;
+    <input type="radio" id="q103op2" name="q103" value="f"><label for="q103op2">often think like others, believe in their rightness</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 104</strong><br>Which word in the pair “decisiveness - curiosity” do you like more in meaning?</p>
+    <input type="radio" id="q104op1" name="q104" value="j" checked="checked"><label for="q104op1">decisiveness</label>&nbsp;
+    <input type="radio" id="q104op2" name="q104" value="p"><label for="q104op2">curiosity</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 105</strong><br>When you are interrupted, you are:</p>
+    <input type="radio" id="q105op1" name="q105" value="e" checked="checked"><label for="q105op1">easy to respond</label>&nbsp;
+    <input type="radio" id="q105op2" name="q105" value="i"><label for="q105op2">easily annoyed</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 106</strong><br>What word in the pair “observe - imagine” do you like more in meaning?</p>
+    <input type="radio" id="q106op1" name="q106" value="s" checked="checked"><label for="q106op1">observe</label>&nbsp;
+    <input type="radio" id="q106op2" name="q106" value="n"><label for="q106op2">imagine</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 107</strong><br>At the workplace, you’re more used to showing:</p>
+    <input type="radio" id="q107op1" name="q107" value="t" checked="checked"><label for="q107op1">restraint and efficiency</label>&nbsp;
+    <input type="radio" id="q107op2" name="q107" value="f"><label for="q107op2">sensitivity and understanding</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 108</strong><br>You would be pleased to work with a boss who is:</p>
+    <input type="radio" id="q108op1" name="q108" value="j" checked="checked"><label for="q108op1">always accurate, punctual</label>&nbsp;
+    <input type="radio" id="q108op2" name="q108" value="p"><label for="q108op2">always full of new ideas</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 109</strong><br>Usually you:</p>
+    <input type="radio" id="q109op1" name="q109" value="e" checked="checked"><label for="q109op1">show enthusiasm for action</label>&nbsp;
+    <input type="radio" id="q109op2" name="q109" value="i"><label for="q109op2">tend to give preference to reflection</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 110</strong><br>Do you not always listen to others, often anticipating what they will say?</p>
+    <input type="radio" id="q110op1" name="q110" value="n" checked="checked"><label for="q110op1">Yes</label>&nbsp;
+    <input type="radio" id="q110op2" name="q110" value="s"><label for="q110op2">No</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 111</strong><br>Cold attitudes towards your colleagues:</p>
+    <input type="radio" id="q111op1" name="q111" value="t" checked="checked"><label for="q111op1">doesn't matter to you</label>&nbsp;
+    <input type="radio" id="q111op2" name="q111" value="f"><label for="q111op2">offends you</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 112</strong><br>You often do:</p>
+    <input type="radio" id="q112op1" name="q112" value="j" checked="checked"><label for="q112op1">what do you think is right</label>&nbsp;
+    <input type="radio" id="q112op2" name="q112" value="p"><label for="q112op2">what you are supposed to do, as circumstances dictate</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 113</strong><br>Do you want to constantly master and understand new things?</p>
+    <input type="radio" id="q113op1" name="q113" value="e" checked="checked"><label for="q113op1">Yes</label>&nbsp;
+    <input type="radio" id="q113op2" name="q113" value="i"><label for="q113op2">No</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 114</strong><br>In a dispute, you:</p>
+    <input type="radio" id="q114op1" name="q114" value="s" checked="checked"><label for="q114op1">argue your position</label>&nbsp;
+    <input type="radio" id="q114op2" name="q114" value="n"><label for="q114op2">quickly jump to conclusions by skipping facts</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 115</strong><br>When arguing with another person, it is more important for you to:</p>
+    <input type="radio" id="q115op1" name="q115" value="t" checked="checked"><label for="q115op1">be right</label>&nbsp;
+    <input type="radio" id="q115op2" name="q115" value="f"><label for="q115op2">keep the relationship</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 116</strong><br>In life and work you:</p>
+    <input type="radio" id="q116op1" name="q116" value="j" checked="checked"><label for="q116op1">know how to plan and live according to plans</label>&nbsp;
+    <input type="radio" id="q116op2" name="q116" value="p"><label for="q116op2">rarely plan, act on the situation</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 117</strong><br>You enjoy working:</p>
+    <input type="radio" id="q117op1" name="q117" value="i" checked="checked"><label for="q117op1">with written assignments</label>&nbsp;
+    <input type="radio" id="q117op2" name="q117" value="e"><label for="q117op2">with personal speeches</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 118</strong><br>What word in the pair “big-picture - details” do you like more in meaning?</p>
+    <input type="radio" id="q118op1" name="q118" value="n" checked="checked"><label for="q118op1">big-picture</label>&nbsp;
+    <input type="radio" id="q118op2" name="q118" value="s"><label for="q118op2">details</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 119</strong><br>What word in the pair “honesty - tact” do you like more in meaning?</p>
+    <input type="radio" id="q119op1" name="q119" value="t" checked="checked"><label for="q119op1">honesty</label>&nbsp;
+    <input type="radio" id="q119op2" name="q119" value="f"><label for="q119op2">tact</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 120</strong><br>Expecting the result, you will rather say:</p>
+    <input type="radio" id="q120op1" name="q120" value="j" checked="checked"><label for="q120op1">it should be</label>&nbsp;
+    <input type="radio" id="q120op2" name="q120" value="p"><label for="q120op2">it could be</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 121</strong><br>If you were asked an unexpected question, you:</p>
+    <input type="radio" id="q121op1" name="q121" value="e" checked="checked"><label for="q121op1">are not uncomfortable and answer without thinking</label>&nbsp;
+    <input type="radio" id="q121op2" name="q121" value="i"><label for="q121op2">may be uncomfortable, so you think before answering</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 122</strong><br>You are used to taking more care of events:</p>
+    <input type="radio" id="q122op1" name="q122" value="s" checked="checked"><label for="q122op1">today</label>&nbsp;
+    <input type="radio" id="q122op2" name="q122" value="n"><label for="q122op2">which do not concern the current moment</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 123</strong><br>Do you tend to predict the feelings of others?</p>
+    <input type="radio" id="q123op1" name="q123" value="f" checked="checked"><label for="q123op1">Yes</label>&nbsp;
+    <input type="radio" id="q123op2" name="q123" value="t"><label for="q123op2">No</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 124</strong><br>What word in the pair “understand - manage” do you like more in meaning?</p>
+    <input type="radio" id="q124op1" name="q124" value="p" checked="checked"><label for="q124op1">understand</label>&nbsp;
+    <input type="radio" id="q124op2" name="q124" value="j"><label for="q124op2">manage</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 125</strong><br>Usually you:</p>
+    <input type="radio" id="q125op1" name="q125" value="i" checked="checked"><label for="q125op1">prefer concentration-intensive work</label>&nbsp;
+    <input type="radio" id="q125op2" name="q125" value="e"><label for="q125op2">can’t always focus for a long time on one task</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 126</strong><br>You would rather be called a person who:</p>
+    <input type="radio" id="q126op1" name="q126" value="s" checked="checked"><label for="q126op1">is inclined to focus on the facts</label>&nbsp;
+    <input type="radio" id="q126op2" name="q126" value="n"><label for="q126op2">sees options that others don't notice</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 127</strong><br>Usually you:</p>
+    <input type="radio" id="q127op1" name="q127" value="f" checked="checked"><label for="q127op1">take emotional problems to heart</label>&nbsp;
+    <input type="radio" id="q127op2" name="q127" value="t"><label for="q127op2">treat emotional problems as a hindrance in solving problems</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 128</strong><br>At the end of the day you are more likely to:</p>
+    <input type="radio" id="q128op1" name="q128" value="p" checked="checked"><label for="q128op1">forget about time, carried away by solving problems</label>&nbsp;
+    <input type="radio" id="q128op2" name="q128" value="j"><label for="q128op2">strive to complete some part and finish the work on time</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 129</strong><br>In the workplace, you:</p>
+    <input type="radio" id="q129op1" name="q129" value="i" checked="checked"><label for="q129op1">set your own standards where possible</label>&nbsp;
+    <input type="radio" id="q129op2" name="q129" value="e"><label for="q129op2">are more interested in following how others do work</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 130</strong><br>You work more often:</p>
+    <input type="radio" id="q130op1" name="q130" value="s" checked="checked"><label for="q130op1">at a steady pace</label>&nbsp;
+    <input type="radio" id="q130op2" name="q130" value="n"><label for="q130op2">in bursts, with lulls in front of them</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 131</strong><br>Working in a group, you:</p>
+    <input type="radio" id="q131op1" name="q131" value="t" checked="checked"><label for="q131op1">spend some time to build relationships</label>&nbsp;
+    <input type="radio" id="q131op2" name="q131" value="f"><label for="q131op2">get along easily with others right away</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 132</strong><br>Would you say that you sometimes "bite off more than you can chew"?</p>
+    <input type="radio" id="q132op1" name="q132" value="p" checked="checked"><label for="q132op1">Yes</label>&nbsp;
+    <input type="radio" id="q132op2" name="q132" value="j"><label for="q132op2">No</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 133</strong><br>You are more pleased to report on the results of work:</p>
+    <input type="radio" id="q133op1" name="q133" value="i" checked="checked"><label for="q133op1">in a written report</label>&nbsp;
+    <input type="radio" id="q133op2" name="q133" value="e"><label for="q133op2">by speaking at a meeting</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 134</strong><br>When performing work tasks, you:</p>
+    <input type="radio" id="q134op1" name="q134" value="s" checked="checked"><label for="q134op1">prefer to rely on your experience and knowledge</label>&nbsp;
+    <input type="radio" id="q134op2" name="q134" value="n"><label for="q134op2">enjoy working with a new approach that requires new knowledge</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 135</strong><br>Usually you:</p>
+    <input type="radio" id="q135op1" name="q135" value="f" checked="checked"><label for="q135op1">are negatively impacted by conflict, it affects your efficiency</label>&nbsp;
+    <input type="radio" id="q135op2" name="q135" value="t"><label for="q135op2">can work efficiently amongst workplace conflict</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 136</strong><br>You are more likely to:</p>
+    <input type="radio" id="q136op1" name="q136" value="p" checked="checked"><label for="q136op1">try not to miss anything in life</label>&nbsp;
+    <input type="radio" id="q136op2" name="q136" value="j"><label for="q136op2">follow the chosen path</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 137</strong><br>You prefer to:</p>
+    <input type="radio" id="q137op1" name="q137" value="i" checked="checked"><label for="q137op1">work on one task for a long time</label>&nbsp;
+    <input type="radio" id="q137op2" name="q137" value="e"><label for="q137op2">switch from task to task</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 138</strong><br>Which word in the pair “work - inspire” do you like more in meaning?</p>
+    <input type="radio" id="q138op1" name="q138" value="s" checked="checked"><label for="q138op1">work</label>&nbsp;
+    <input type="radio" id="q138op2" name="q138" value="n"><label for="q138op2">inspire</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 139</strong><br>You would say that you are:</p>
+    <input type="radio" id="q139op1" name="q139" value="f" checked="checked"><label for="q139op1">an enthusiastic person</label>&nbsp;
+    <input type="radio" id="q139op2" name="q139" value="t"><label for="q139op2">a steady, casual person</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 140</strong><br>Preferably, you:</p>
+    <input type="radio" id="q140op1" name="q140" value="p" checked="checked"><label for="q140op1">live your life by adapting to the current situation</label>&nbsp;
+    <input type="radio" id="q140op2" name="q140" value="j"><label for="q140op2">build your life according to plan</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 141</strong><br>When you learn new things, you:</p>
+    <input type="radio" id="q141op1" name="q141" value="s" checked="checked"><label for="q141op1">ask for more concrete examples</label>&nbsp;
+    <input type="radio" id="q141op2" name="q141" value="n"><label for="q141op2">quickly grasp the meanings of words and characters</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <p><strong>Question 142</strong><br>You are prone to:</p>
+    <input type="radio" id="q142op1" name="q142" value="s" checked="checked"><label for="q142op1">memorize</label>&nbsp;
+    <input type="radio" id="q142op2" name="q142" value="n"><label for="q142op2">reason</label><br>
+</center>
+</div>
+
+<div class="card">
+<center>
+    <br>
+    <input type="submit">
+    <br><br>
+</center>
+</div>
+</form>
+
+{% endblock %}
